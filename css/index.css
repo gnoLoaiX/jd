@@ -1,0 +1,294 @@
+/*小结:
+	1、jd .jd-inner .jd a 这三个都要加定位 
+	2、因为只有定位的盒子才有z-index 
+	3、  层级关系 默认是0 */
+.jd {
+	height: 480px;
+	/*background-color: pink;*/
+	position: relative;
+}
+.jd-inner {
+	height: 480px;
+	/*background-color: skyblue;*/
+	position: relative;  				/*只有浮动 绝对定位 固定定位的盒子才有行内块的转换 写这个就不用写宽了*/
+	z-index: 1;
+}
+.jd>a {  /*调试很久: 结构要清晰 是哪个a标签 不然 .jd a 就是 jd下的所有a*/
+	height: 480px;
+	background: url(../images/bg.png) no-repeat top center;
+	position: absolute;
+	top: 0;
+	left: 0;							/* 工作经验: 这时 空白 因为转换为行内块了 所以要加宽度*/
+	width: 100%;						/*强制显示宽度*/
+	z-index: 0;
+}					
+ .jd-col1 {
+	width: 190px;
+	height: 465px;
+	background-color: #6E6568;
+	float: left;
+	padding-top: 15px;
+}
+.jd-col1 li {
+	padding-left: 10px;
+	height: 28px;
+	line-height: 28px;
+}
+.jd-col1 li:hover, .jd-col1 li a:hover {
+	background-color: #999395;
+	color: #f10215;
+}
+.jd-col1 li a {
+	color: #fff;
+	font-size: 14px;
+}
+.jd-col1 li span {
+	color: #fff;
+	font-size: 12px;
+}
+.jd-col2 {
+	width: 790px;
+	height: 480px;
+	float: left;
+	margin-left: 10px;
+}
+.jd-col2-hd{
+	height: 340px;
+	/*width: 100%;*/
+	/*background-color: purple;*/
+	position: relative;
+
+}
+.jd-col2-bd img {						/*和相邻行内元素（行内块）在一行上,但是之间会有空白缝隙*/											
+	width: 390px;
+	height: 130px;
+	margin-top: 10px;
+}
+.first {								/*由于 main 部分已经加了浮动 所以必须要在所在盒子添加浮动 遵循规则*/
+	float: left;
+}
+.two {
+	float: right;
+}
+.arr-l, .arr-r {
+	position: absolute;
+	top: 50%;
+	margin-top: -30px;
+	width: 30px;
+	height: 60px;
+	background: rgba(0, 0, 0, .2);
+	font-family: "icomoon";
+	color: #fff;
+	font-size: 17px;
+	text-align: center;
+	line-height: 60px;
+}
+.arr-l {
+	left: 0;
+}
+.arr-r {
+	right: 0;
+}
+ol {									/*清除ol 有内边距padding值 比宽度大40px*/
+	padding: 0;
+}
+.jd-col2-hd ol {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	margin-left: -90px;
+	width: 180px;
+	height: 20px;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.3);
+}
+.jd-col2-hd ol li {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #fff;
+	float: left;
+	margin: 4px 5px;
+	cursor: pointer;
+}
+.jd-col2-hd .current {
+	background-color: #f10215;
+}
+.jd-col3 {
+	width: 190px;
+	height: 480px;
+	/*background-color: yellow;*/
+	float: right;
+}
+/*小结:
+	刚开始纯HTML CSS写网页 当没有出现样式的情况 第一反应是看
+	1、有没有样式(90%-类名) 
+	2、代码(10%-类似括号的小错误) 
+	3、其实写网页正是如此 调试错误刚开始无非是没有样式 所谓样式指的是CSS（包括层叠性错误等等)*/
+
+.user {
+	height: 95px;
+	/*background-color: pink;*/
+	padding: 20px 15px 0;
+}
+.user-info {
+	height: 40px;
+	padding-left:54px; 
+	font-size:12px;
+	color:#747474;
+	line-height: 22px;
+	position: relative;
+}
+.info-img {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 50%;					/*图片加了50% 没有用 要hidden*/
+	overflow: hidden;
+}
+.info-img img {							/*将图片嵌入进去info-img 里	*/		
+	width: 100%;
+	height: auto;						/*自动 跟随着宽度 一起缩放*/
+}
+.user-info a {
+	font-size: 12px;
+	color:#747474; 
+}
+.user-info a:hover {
+	color: #f10215;
+}
+.user-profit a {
+	width: 70px;
+	height: 20px;
+	border: 2px solid #f10215;
+	display: inline-block;              /*少了转换 设置宽高 padding无效 而且只能转换为行内块 因为在一行显示*/
+	font-size: 12px;
+	color: #f10215;
+	text-align: center;
+	line-height: 20px;
+	margin-right: 3px;
+}
+.user-profit {
+	margin-top: 14px;
+}
+.user-profit a:hover {
+	color: #fff;
+	background-color: #f10215;
+}
+.news {
+	height: 149px;
+	/*background-color: purple;*/
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 5px 15px 0;
+}
+.tab-hd {
+	border-bottom: 1px solid #ccc;
+	padding: 3px 0;
+	position: relative;
+}
+/*.tab-hd*/ a {							/*样式重复 写相同类名 集体声明*/
+	font-size: 12px;
+	color: #747474;
+}
+a:hover {
+	color: #f10215;
+}
+.cuxiao {
+	border-right: 1px solid #ccc;
+	padding-right: 11px;
+}
+.gonggao {
+	margin-left: 5px;
+}
+.news .more1 {
+	position: absolute;
+	top: 7px;
+	right: 0;
+}
+.line {
+	width: 28px;
+	height: 2px;
+	background-color: #f10215;
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+}
+.tab-bd {
+	margin-top: 10px;
+}
+.tab-bd li {
+	height: 23px;
+	line-height: 23px;
+}
+/*.tab-bd li a {						
+	font-size: 12px;
+	color: #747474;
+}*/
+.jd-service {
+	height: 209px;
+	/*background-color: skyblue;*/
+	overflow: hidden;					/*父盒子设置完毕后 用原始爷类盒子隐藏*/
+}
+.jd-service li {
+	width: 47px;
+	height: 69px;
+	/*background-color: purple;*/
+	float: left;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.jd-service ul {                        /*设置父盒子大于实际宽度 防止盒子掉下去*/
+	width: 195px;
+}
+.jd-service li a {
+	width: 100%;
+	height: 100%;
+	height: auto;
+	display: block;
+}
+.jd-service i{
+	display: block;
+	width: 24px;
+	height: 24px;
+	margin: 15px auto 8px;
+	background: url(../images/sprite_fs@1x.png) no-repeat 0 0;
+}
+.two i {
+	background-position: -43px 0;
+}
+.three i {
+	background-position: -88px 0;
+}
+.four i {
+	background-position: -132px 0;
+}
+.five i {
+	background-position: 0 -45px;
+}
+.six i {
+	background-position: -43px -45px;
+}
+.seven i {
+	background-position: -88px -45px;
+}
+.eight i {
+	background-position: -132px -45px;
+}
+.nine i {
+	background-position: 0px -87px;
+}
+.ten i {
+	background-position: -43px -87px;
+}
+.eleven i {
+	background-position: -88px -87px;
+}
+.twelve i {
+	background-position: -132px -87px;
+}
+.jd-service p {
+	text-align: center;
+}

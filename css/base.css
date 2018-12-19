@@ -1,0 +1,462 @@
+/*网站太大 相同css样式 单独写成css文件*/
+/*版心 注意：css里面的注释是这样的*/
+.w {
+	width: 1190px;
+	margin: auto;
+}
+.fr {
+	float: right;
+}
+.fl {
+	float: left;   
+}
+.style-red {					/*公共样式写上面 因为开始是有样式的 样式的公共特性*/
+	/*color: #f10215;*/			/*权限不够*/
+	color: #f10215!important;
+}
+li {
+	list-style: none;
+}
+ul {							/*去掉内外边距 不去会在盒子中偏右 偏下*/
+	margin: 0;
+	padding: 0;
+}
+input, button {
+	padding: 0;
+	border:0;
+}
+a {
+	text-decoration: none;
+}
+img {							/*去除图片底侧空白缝隙 图片和文字的基线对齐*/
+	vertical-align: top;         
+}
+.clearfix:before,.clearfix:after { 
+  content: "";
+  display: table;  				/* 这句话可以出发BFC BFC可以清除浮动,BFC我们后面讲 */
+}
+.clearfix:after {
+ clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+@font-face {  					/*粘贴过来首先要修改路径*/
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?1x1j55');
+  src:  url('../fonts/icomoon.eot?1x1j55#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?1x1j55') format('truetype'),
+    url('../fonts/icomoon.woff?1x1j55') format('woff'),
+    url('../fonts/icomoon.svg?1x1j55#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+	background-color: #F6F6F6;
+}
+/*京东 顶部 start*/
+.J_event {
+	/*height: 80px;*/			/* 代码优化 没有用浮动、定位 子类一定会撑开父类 对结果无影响*/
+	background-color: #000;
+}
+.J_event a {
+	display: block; 
+	height: 80px;
+	background: url(../images/top.jpg) no-repeat;
+	position: relative;
+}
+.J_event a i {    				/*i与行内元素没有大小 跑左上角 用定位*/
+	width: 20px;
+	height: 20px;
+	/*background-color: pink;*/
+	position: absolute;   		/*子绝 父相 是最好的布局方式*/
+	right: 0;
+	top: 5px;
+	font-family: "icomoon";  	/*上面定义字体 下面调用*/
+	font-style: normal;
+	text-align: center;  		/*设置pink时更好知道 让字体图标 在盒子中间*/
+	line-height: 20px;
+	color: #fff;
+	background:rgba(45, 45, 45, .4);
+}
+/*京东 顶部 end*/
+
+.shortcut {
+	height: 30px;
+	background-color: #E3E4E5;  /* 可以跟人家小美工谈谈 一看就知道很有想法 颜色很有艺术范*/
+	border-bottom: 1px solid #DDDDDD;
+	color: #9D9D9D;
+	font-size: 12px; 
+	line-height: 30px;   		/*行高会继承下去*/
+}
+.shortcut a {      				/*因为是a标签 所以要再次设置 字体颜色 字体大小*/
+	color: #9D9D9D;
+	font-size: 12px;
+	text-decoration: none;
+}
+.shortcut a:hover {
+	color: #e33333;
+}
+.shortcut .fr li {    			/*明确作用对象是li 如果是a标签 那么将会显示错误*/
+	float: left;
+}
+.shortcut .fl .pos {
+	font-family: "icomoon"; 	/*想要使用同样要定义字体*/
+	font-style: normal;
+	font-size: 14px;
+	color: #f10215;
+}
+.shortcut .fl li { 				/*ul li 因为没有宽高 所以不会撑盒子 margin padding 都可以*/
+	margin-left: 200px;
+	height: 30px;				/* 多了0.2像素 修改规定它的高度 或者加overflow: hidden */
+	overflow: hidden;
+}
+.spacer {                       /*这也是一种做法*/
+	width: 1px;
+	height: 10px;
+	background-color: #ccc;
+	margin: 10px 10px 0px;
+}
+.dorpdown {
+	padding-right: 15px;
+	position: relative;
+}
+.dorpdown i {					/* 这样会有问题整体往下了 字是默认基线对齐的 */
+	font-family: "icomoon";
+	font-style: normal;
+	font-size: 16px; 
+	position: absolute;
+	right: -2px;				/* -2px 测量的 操作li i 结构要想清楚*/
+	top: -2px;  
+}
+.erweima {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #ccc;
+	padding: 3px;
+	position: absolute;
+	left: -8px;
+	top: 35px;
+	cursor: pointer;
+	/*display: none;*/
+}
+/*.dj:hover {
+	display: block;
+}*/
+/*header 部分 start*/
+.header {
+	height: 140px;
+}
+.inner {
+	height: 140px;
+	/*background-color: pink;*/
+	position: relative;
+}
+.logo {
+	width: 190px;
+	height: 170px;
+	position: absolute;
+	top: -30px;									 	 /*显示问题 放大缩小后看不到缝隙了*/
+	left: 0;
+	background:url(../images/logo.jpg) no-repeat;   /*写到这时候 二维码被压住了 出现权重的问题 z-index默认是0 no-repeat可省略？*/
+	box-shadow: 0 -12px 10px rgba(0,0,0,.2);
+}
+.logo h1 {					  /*在logo a 之前没有加这句话 a标签范围是不对的 因为没有清除h1的外边距*/
+	margin: 0;
+}
+.logo a {
+	display: block;
+	/*width: 100%;height: 100%;*/ /*鼠标放上去只是h1的范围 因为h1没有宽高 所以和父类有关系*/
+	width: 190px;
+	height: 170px;					/*而这时已经撑开h1 由于h1 身外边距的影响 所以要有上面这句话*/ 
+	text-indent: -99999em;
+	overflow: hidden;
+}
+
+.search {
+	width: 550px;
+	height: 35px;
+	/*background-color: purple;*/
+	position: absolute;
+	top: 25px;
+	left: 320px;
+}
+.search input {
+	/*width: 498px;*/
+	width: 493px;
+	height: 33px;
+	border: 1px solid #f10215;
+	padding-left: 5px;
+	outline: none;              /* 取消蓝色边框 */
+	color: #989898;
+	float: left;
+}
+.search button {
+	width: 50px;
+	height: 35px;
+	background-color: #F10215;
+	float: left;
+	cursor: pointer;
+	outline: none;
+}
+.search i {
+	/*font-family: "icomoon";*/
+	font-family: "icomoon";
+	color: #fff;
+	font-size: 16px;
+	font-style: normal;
+}
+.search em {
+	position: absolute;   /*加了定位的盒子 不用给转换*/
+	top: 10px;
+	right: 65px;
+	width: 19px;
+	height: 15px;
+	/*background-color: blue;*/
+	cursor: pointer;
+	background: url(../images/sprite-search.png);
+}
+.search em:hover {
+	background-position: -30px 0;
+}
+
+.hotwords {
+	position: absolute;
+	top: 70px;
+	left: 320px;
+}
+.hotwords a {
+	color: #9E9B99;
+	font-size: 12px;
+}
+.hotwords a:hover {
+	color: #f10215;
+}
+.myCar{
+	width: 188px;
+	height: 33px;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 25px;
+	right: 100px;
+	text-align: center;             /*给父类 让父类里面的东西 水平居中 垂直居中*/
+	line-height: 33px;
+}
+.myCar a {
+	font-size: 12px;
+	color: #f10215;
+}
+.myCar i {
+	font-family: "icomoon";
+	font-style: normal;
+	color: #f10215;
+	margin-right: 3px;
+}
+.myCar s {
+	position: absolute;         /*加了绝对定位的盒子 和浮动一样 自动转换为行内块 内容有多大撑多大*/
+	top: 5px;
+	/*right: 35px;*/			/*但是这样数量大了会出现问题 会向右覆盖 细节绝对成败*/
+	left: 140px;
+	text-decoration: none;
+	background-color: #f10215;  /*这时高度很高 测得是mycar 继承过来的*/
+	height: 16px;
+	line-height: 16px;
+	font-style: 12px;     		/*字体不能小于12 谷歌解析12以上的*/
+	padding: 0 3px;
+	border-radius: 7px;
+	color: #fff;
+}
+.computer {
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+}
+.navitems {
+	position: absolute;
+	left: 200px;
+	bottom: 0;
+}
+.navitems li, .navitems ul {
+	float: left;
+}
+.navitems li a {
+	font-size: 16px;
+	color: #555a5f;
+	font-weight: 700;
+	height: 40px;   			/*高度测量小技巧*/
+	line-height: 40px;
+}
+.navitems li {
+	margin-left: 30px;
+}
+.navitems li a:hover {
+	color: #f10215;
+} 
+.navitems .spacer {				
+	float: left;
+	margin-top: 15px;
+	margin-left: 20px;
+	margin-right: -10px;
+}
+/*header 部分 end*/
+
+/*footer 部分 开始啦*/
+.footer {
+	height: 500px;
+	background-color: #EAEAEA;
+}
+.footer-service {
+	height: 100px;
+	border-bottom: 1px solid #DEDEDE;
+}
+.footer-service-inner {
+	/*background-color: pink;*/
+	padding: 30px 0px;
+}
+.footer-service-inner li {
+	float: left;
+	width: 297px;
+	height: 42px;
+	/*background-color: purple;*/               /*由于浮动 所以要清除浮动*/
+}
+.service_unit {
+	width: 225px;
+	height: 42px;
+	margin: 0 auto;
+	position: relative;
+}
+.service_unit h5 {
+	width: 36px;
+	height: 42px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(../images/ico.png) no-repeat;
+	text-indent: -999px;
+	overflow: hidden;                  /*清除浮动的本质 高的问题 浮动受影响 (给高)*/
+}
+.service_unit p {
+	line-height: 42px;
+	margin-left: 45px;
+	font-size: 18px;
+	font-weight: 700;
+}
+/*h5, p*/
+* {										/*看公司要求写 */
+	margin: 0;
+}
+.service_unit .kuai {
+	background-position: 0 -42px;    	/*这时出现问题 出现问题有几个主要的 加了横线：黄色叹号-代码写错 被划掉了-层叠掉了*/
+}
+.service_unit .hao {
+	background-position: 0 -86px;
+}
+.service_unit .sheng {
+	background-position: 0 -128px;
+}
+/*footer 部分 结束*/
+
+.help {
+	/*height: 200px;*/
+	height: 180px;
+	/*background-color: pink;*/
+	padding-top: 20px;
+}
+.help dl {
+	float: left;
+	width: 195px;						/*宽度剩余法*/
+}
+.help dd {
+	height: 22px;
+}
+.help dt {
+	font-size: 14px;
+	font-weight: 700;
+	color: #666666;
+	height: 30px;                        /*高度剩余法---上行文字顶部 到 下行文字顶部*/
+}
+.help dd a {
+	color: #727272;
+	font-size: 12px;
+}
+.help dd a:hover {
+	color: #f10215;
+}
+/*按道理类名写一个就够了 出现两个 不外乎就是提高权重*/
+.help .cover {							/*上面刚声明了float: left 要想权重比他高 所以*/
+	float: right;
+	width: 207px;
+	height: 150px;
+	/*background-color: purple;*/  
+	background: url(../images/ico_footer.png) no-repeat;        
+}
+.cover dt {
+	text-align: center;
+}
+.help .info {
+	width: 175px;
+	height: 50px;
+	font-size: 12px;
+	margin-top: 5px;
+	margin-left: 10px;
+	line-height: 18px;
+	color: #727272;
+}
+.more {
+	text-align: right;
+	padding-right: 10px;
+	margin-top: 2px;
+}
+
+/*版权组模块*/
+.copyright {
+	border-top: 1px solid #ccc;
+	padding-top: 15px;
+}
+.links {
+	text-align: center;
+}
+.links a {
+	color: #727272;
+	font-size: 12px;
+}
+.links span {
+	font-size: 12px;
+	color: #D4D4D4;
+	margin: 0 2px;
+}
+.links a:hover {
+	color: #f10215;
+}
+.c-info {
+	font-size: 12px;
+	color: #9E9E9B;
+	line-height: 20px;
+	margin-top: 10px;
+	text-align: center;	
+}
+.tupian {
+	text-align: center;
+	margin-top: 10px;
+}
+.tupian a {
+	width: 103px;
+	height: 32px;
+	display: inline-block;
+	background: url(../images/ico_footer.png) no-repeat 0 -151px;
+}
+.tupian .kx {
+	background-position: -104px -151px;
+}
+.tupian .wz {
+	background-position: 0px -184px;
+}
+.tupian .cx {
+	background-position: -104px -184px;
+}
+.tupian .zh {
+	background-position: 0px -217px;
+}
+.tupian .wj {
+	background-position: -104px -217px;
+}
